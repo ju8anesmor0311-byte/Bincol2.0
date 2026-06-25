@@ -7,7 +7,7 @@ $clave = $_POST['clave'];
 
 /* USUARIO ADMIN */
 
-if($usuario == "admin" && $clave == "1234"){
+if($usuario == "bincol20gtasa@gmail.com" && $clave == "Bincolombia#2001"){
 
     $_SESSION['admin'] = true;
 
