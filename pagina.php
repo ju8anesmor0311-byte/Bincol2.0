@@ -118,10 +118,6 @@ $query_marcas = mysqli_query($conexion, $sql_marcas);
   <!-- BOTONES -->
   <div class="header-botones">
 
-    <a href="favoritos.php" class="btnPanel">
-      ❤️ Favoritos
-    </a>
-
     <a href="carrito.php" class="btnPanel">
       🛒 Carrito
     </a>
