@@ -34,9 +34,34 @@ btnReset.onclick = ()=> location.reload();
 /* BOTONES */
 document.addEventListener("click", e=>{
 
-  if(e.target.classList.contains("btnCarrito")){
-    Swal.fire("Producto agregado 🛒");
-  }
+if(e.target.classList.contains("btnCarrito")){
+
+    let card = e.target.closest(".card");
+
+    let producto = {
+        id: card.dataset.id,
+        nombre: card.dataset.nombre,
+        descripcion: card.dataset.descripcion,
+        imagen: card.dataset.imagen
+    };
+
+    let carrito =
+    JSON.parse(localStorage.getItem("carrito")) || [];
+
+    carrito.push(producto);
+
+    localStorage.setItem(
+        "carrito",
+        JSON.stringify(carrito)
+    );
+
+    Swal.fire({
+        icon: "success",
+        title: "Producto agregado",
+        text: producto.nombre
+    });
+
+}
 
   if(e.target.classList.contains("btnFav")){
     e.target.textContent="💜";

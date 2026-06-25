@@ -4,11 +4,11 @@
 
 <meta charset="UTF-8">
 <title>Carrito</title>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="hola.css">
 
 </head>
-
+               
 <body>
 
 <header>
@@ -24,7 +24,9 @@ Volver
 </header>
 
 <main>
-
+<button onclick="vaciarCarrito()" class="btnPanel">
+    🗑️ Vaciar carrito
+</button>
 <div class="grid" id="contenedorCarrito">
 </div>
 
@@ -38,23 +40,44 @@ JSON.parse(localStorage.getItem("carrito")) || [];
 let contenedor =
 document.getElementById("contenedorCarrito");
 
-carrito.forEach(producto=>{
+if(carrito.length === 0){
 
-  contenedor.innerHTML += `
+    contenedor.innerHTML = "<h2>No hay productos en el carrito</h2>";
 
-  <div class="card">
+}else{
 
-    <img src="${producto.imagen}">
+    carrito.forEach(producto=>{
 
-    <h3>${producto.nombre}</h3>
+        contenedor.innerHTML += `
 
-    <p>${producto.descripcion}</p>
+        <div class="card">
 
-  </div>
+            <img src="${producto.imagen}">
 
-  `;
+            <h3>${producto.nombre}</h3>
 
-});
+            <p>${producto.descripcion}</p>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function vaciarCarrito(){
+
+    localStorage.removeItem("carrito");
+
+    Swal.fire({
+        icon: "success",
+        title: "Carrito vaciado"
+    }).then(() => {
+        location.reload();
+    });
+
+}
 
 </script>
 
